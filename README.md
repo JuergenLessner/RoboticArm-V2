@@ -24,6 +24,7 @@ The work took approximately **250 hours in total** for the first prototype and t
 - [Technical specifications](#technical-specifications)
 - [Parts and materials](#parts-and-materials)
 - [3D printing](#3d-printing)
+- [Original voltage-regulator schematic](#original-2015-voltage-regulator-schematic)
 - [Servo initialization and mechanical alignment](#servo-initialization-and-mechanical-alignment--read-before-assembly)
 - [Assembly overview](#assembly-overview)
 - [Electronics and wiring](#electronics-and-wiring)
@@ -48,7 +49,7 @@ The work took approximately **250 hours in total** for the first prototype and t
 | Control | Manual push-button control; teaching features considered during development | Manual control, position teaching and automatic replay |
 | Mechanical design | First working 3D-printed construction; early arm and base geometry | Revised geometry, smaller base enclosure, improved components, and parts separated for easier printing and assembly |
 | Gripper | The early construction notes describe an aluminium gripper | 3D-printable V2 mechanical design |
-| Display and storage | Initial development controls; the original notes envisaged an LCD | 16 × 2 I²C LCD and MicroSD card reader |
+| Display and storage | Original control design with a 20 × 4 LCD | Revised 16 × 2 I²C LCD and MicroSD card reader |
 | Software | Original prototype and servo test work | Original V2 firmware with Normal / Programming / Replay modes |
 
 ### Why I built a 3D printer first
@@ -83,14 +84,42 @@ The first prototype was an important testbed for the bearing-supported base, loa
 
 ## RoboticArm V2 — the finished design
 
-V2 was designed to make the arm easier to build and much more useful in operation. The main improvements were:
+V2 was designed to make the arm easier to build, more reliable mechanically, and substantially more capable in operation. The following details come from the original **“Release Infos RA2”** comparison between Versions 1 and 2.
 
-1. **Teaching and replay:** move the arm by hand-operated buttons, store successive servo positions, and play them back repeatedly.
-2. **MicroSD storage:** a recorded sequence is kept as an ordinary text file rather than requiring a new Arduino upload for each movement routine.
-3. **16 × 2 LCD:** the control panel shows modes and status information.
-4. **Improved 3D-printed mechanics:** a smaller base enclosure, internal servo controller, revised weak points, and separate parts where that makes construction easier.
-5. **Integrated operation:** a dedicated keyboard allows the full six-axis arm to be operated without a computer.
-6. **Adjustable servo supply:** the original build used a voltage regulator with a 6 V or 7.2 V setting, supplied from a 12 V DC power source.
+### Changes from V1 to V2 — mechanics
+
+- Reduced the diameter of the base cylinder to shorten printing time and reduce material consumption.
+- Installed the servo controller inside the base cylinder.
+- Added recesses for M3 nuts to the base-servo mounting block.
+- Split the base plate into sections so that the servos are easier to mount.
+- Enlarged the cable opening in the base plate.
+- Made the arm parts compatible with lower-cost plastic servo mounting horns/adapters.
+- Reinforced the rear section of the upper arm.
+- Improved the fit of the servo recesses in the upper arm.
+- Recessed the M3 nuts into the material near the front rotation area.
+- Improved the fit of the upper-arm bearing support.
+- Reinforced the wrist and recessed its servo-mounting nuts into the printed parts.
+- Redesigned the **gripper so that it can be printed completely**, unlike the earlier construction with an aluminium gripper.
+- Improved cable routing throughout the entire arm.
+
+### Changes from V1 to V2 — electronics
+
+- Enclosed the complete control electronics in a housing.
+- Expanded the control keyboard by **six push buttons and two switches**.
+- Replaced the earlier **20 × 4 LCD** with a more compact **16 × 2 I²C LCD**.
+- Added a **MicroSD card reader** to record and replay arm movements.
+- Replaced soldered interconnection wiring with **crimped plug connectors**.
+- Included the original **5 A adjustable servo-voltage regulator**, allowing a readily available **12 V / 5 A DC power supply** to be used. The historical circuit provides approximately 5.8–6 V or 7.2 V, depending on its resistor configuration; see the [original recovered schematic](#original-2015-voltage-regulator-schematic).
+
+### Changes from V1 to V2 — software and operation
+
+- **Normal mode:** direct control of all six axes via the keyboard.
+- **Programming / Teaching mode:** manually select positions and press **MEM** to save each position to the MicroSD card.
+- **Protected deletion:** in the original control panel, press **both DEL buttons simultaneously** to request deletion of the saved `MEM.TXT` sequence; confirm with **MEM**, or cancel with the reset control.
+- **Replay mode:** repeat saved positions endlessly. If `MEM.TXT` is absent, play the predefined `REP.TXT` sequence instead.
+- **Protected reset:** the original panel requires pressing **both RST buttons simultaneously** to reset the Arduino and return to the power-on state.
+- Improved the response of the **Speed** button.
+- An early plan to use an **Arduino Nano** was abandoned due to insufficient program memory; **V2 retained the Arduino Mega** used for V1.
 
 The original V2 demonstration shows the robot lifting **285 g**. This is a demonstrated result of that particular build, not a guarantee for every servo, print, power supply or arm configuration.
 
@@ -111,7 +140,7 @@ The original V2 demonstration shows the robot lifting **285 g**. This is a demon
 | Recorded positions | Six three-digit PWM-count positions plus one speed flag per record |
 | Operating modes | Normal, Programming (Teaching), Replay |
 | Control panel | 3 × 6 button matrix, plus control buttons and switches |
-| Original supply arrangement | External 12 V DC supply, separate regulated high-current servo supply (historically 6 V / 7.2 V), and 5 V logic |
+| Original supply arrangement | 12 V / 5 A DC input; original LM338 / 2N2955 transistor-assisted 5 A regulator for approximately 5.8–7.2 V servo supply; separate 5 V logic |
 | Mechanical fasteners | Mainly M3 hardware |
 | Bearings | 8 × 623ZZ listed in the original V2 bill of materials |
 | Demonstrated lifting | 285 g, as shown in the original video |
@@ -130,7 +159,8 @@ The following is the **historical V2 bill of materials**, rearranged into functi
 | 7 | TowerPro MG995 servos or mechanically/electrically compatible alternatives |
 | 8 | 623ZZ ball bearings |
 | As required | M3 screws, approximately 10–40 mm lengths |
-| As required | M3 nuts |
+| As required | M3 nuts, including self-locking nuts, and M3 washers |
+| As required | M3 plastic screws and nuts, and approximately 3 × 20 mm wood/self-tapping screws |
 | Approx. 1 m | M3 threaded rod |
 | As required | Cable ties and mounting materials |
 
@@ -147,15 +177,15 @@ The following is the **historical V2 bill of materials**, rearranged into functi
 | 1 | ON/OFF/ON switch |
 | 1 | Prototype board, approximately 94 × 53 mm, 2.54 mm grid |
 | 3 | 10 kΩ, ¼ W resistors for the additional inputs |
-| As required | Dupont crimp contacts, housings and hookup wire |
+| As required | Dupont crimp contacts, 1-/2-/3-/4-way housings, and several metres of coloured approximately 0.5 mm² stranded hookup wire |
 
 ### Original voltage-regulator parts
 
-These components appeared in the original Thingiverse list:
+These components are listed in the historical 2015 bill of materials and are now also documented by the **recovered original schematic**:
 
 | Quantity | Component |
 | ---: | --- |
-| 3 | MJ2955 power transistors with heat sinks (historical list also wrote “2n2955”) |
+| 3 | 2N2955 / MJ2955-type PNP power transistors, as identified in the historical documentation, with heat sinks |
 | 1 | LM338 adjustable voltage regulator with heat sink |
 | 3 | 0.1 Ω, 5 W resistors |
 | 1 | 6 Ω, 2 W resistor |
@@ -166,7 +196,34 @@ These components appeared in the original Thingiverse list:
 | 1 | Prototype board, approximately 50 × 70 mm, 2.54 mm grid |
 | As required | Insulated hookup wire and heat-sink mounting hardware |
 
-**The original voltage-regulator circuit diagram has been lost.** This list is preserved as a historical record only: it does **not** provide enough information to reconstruct the regulator safely. Do not assume an unverified schematic represents the original circuit. For a new build, use a properly rated, protected DC power solution and verify the voltage and current requirements of the chosen servos. Never feed high servo current through the Arduino's 5 V pin, USB connector or logic supply.
+### Original 2015 voltage-regulator schematic
+
+![Original 2015 RoboticArm V2 5 A voltage-regulator schematic](RoboticArm_V2_Voltage_Regulator.png)
+
+*Original RoboticArm V2 **5 Amp** voltage-regulator circuit drawing, recovered from the project archive. The image is preserved without modification. It was designed with the help of Alfred (see Credits).*
+
+The drawing documents:
+
+| Designator | Original marking | Function / note |
+| --- | --- | --- |
+| V1 | LM338 (TO-220) | Adjustable linear regulator with heat sink |
+| V2–V4 | 2N2955 (TO-3) | Three external PNP power transistors, each with a heat sink |
+| R1–R3 | 0.1 Ω, 5 W each | Resistors in the three external transistor paths |
+| R4 | 6 Ω, 2 W | Part of the original regulator circuit |
+| R5 | 270 Ω | Reference resistor in the output-adjustment network |
+| R6 | 1.3 kΩ for 7.2 V / 1 kΩ for 5.8 V | Historical alternative output-voltage settings |
+| C1 and C3 | 100 nF ceramic | Capacitors shown at input and output |
+| C2 | 1 µF electrolytic | Electrolytic capacitor in the adjustment circuit |
+| Input | 12 V DC / 5 A | Original specified external supply |
+| Output | Approx. 5.8–7.2 V DC | Original intended regulated servo supply, rated at 5 A in the drawing |
+
+The original drawing gives this nominal adjustment equation:
+
+`Uout = 1.25 V × (1 + R6 / R5)`
+
+For the two historical R6 choices, this ideal formula produces about **7.27 V** (1.3 kΩ) or **5.88 V** (1 kΩ). These are **calculated setpoints, not verified performance measurements** of the assembled circuit.
+
+> **Electrical safety / historical reproduction:** This is the recovered original 2015 drawing, **not a modern, independently verified or certified power-supply design**. It contains a high-current linear regulator and external pass transistors; thermal dissipation, transistor pinouts and genuine component variants, protection, wiring gauge and short-circuit behaviour must all be assessed before reconstruction. A modern, adequately protected DC regulator may be a safer choice for a new build. The drawing starts at a **12 V DC input**; it is not a mains-wiring instruction. Do not power seven high-current servos from the Arduino 5 V output, USB port or logic rail.
 
 ## 3D printing
 
@@ -326,7 +383,7 @@ Use an appropriate SD breakout with a regulator and logic-level compatibility fo
 
 The 2015 project included **hand-drawn diagrams of the overall control electronics and keyboard wiring**, together with photographs of the prototype boards and components. These belong to the historical documentation and should remain unaltered when copied into the repository.
 
-The **power-regulator schematic is no longer available**. The materials list above is therefore intentionally **not** presented as a buildable power-regulator schematic.
+The original **[5 A voltage-regulator schematic](#original-2015-voltage-regulator-schematic)** has also been recovered and is reproduced above. It remains a historical circuit drawing, not a substitute for appropriate electrical validation when building hardware today.
 
 ## Arduino software
 
@@ -393,7 +450,9 @@ In Teaching mode the movement buttons still work, but the arm can also **memoriz
 4. Continue moving the arm and pressing **MEM** for each additional point in the sequence.
 5. Switch to Replay mode and reset the Arduino when ready to play the recorded sequence.
 
-The original sketch maps logical **`N` to MEM**. Its logical **`M`** button starts deletion confirmation, and **MEM confirms the deletion**; the LCD instructs the operator to use the reset button to cancel. Deleting the recording removes `MEM.TXT`.
+**Deleting a recorded sequence (original V2 panel):** In Teaching mode, press **both physical DEL buttons together**. The keyboard electronics present the logical **`M`** action used by the firmware to display the deletion confirmation. The LCD then asks for **MEM** to confirm; pressing **both RST buttons together** resets the Arduino and cancels. Confirmation deletes `MEM.TXT` from the card. The firmware maps logical **`N`** to the MEM/save action.
+
+**Reset:** The hardware reset on the original control panel is intentionally assigned to **two RST buttons pressed together**. As this is wired to Arduino RESET, restarting causes the startup positions and the operating mode to be read again. The original sketch also requires a valid SD card to finish its mode initialization.
 
 ### 3. Replay mode
 
@@ -524,7 +583,7 @@ The repository's `gh-pages` branch contains the following original files:
 
 The original **V2 STL print files** are available on [Thingiverse](https://www.thingiverse.com/thing:969460), and additional historical project construction material is referenced on [Hackster](https://www.hackster.io/JULE/roboticarm-v2-aef36d).
 
-The original photographic documentation includes the assembled arm, control-panel front and internal electronics, keyboard prototyping board, servo/power components, and **two hand-drawn electrical diagrams** (system overview and control keyboard). These show the actual 2015 build. They should be stored as **unchanged archival files** if added to GitHub; unlike the linked YouTube previews, they are **not presently part of the repository's three-file root**.
+The original photographic documentation includes the assembled arm, control-panel front and internal electronics, keyboard prototyping board, servo/power components, and **two hand-drawn electrical diagrams** (system overview and control keyboard). The newly recovered **voltage-regulator drawing** is reproduced in this README, with the image file supplied alongside it. These materials show the actual 2015 build. All original image files should be stored **unaltered** when added to GitHub; the other photographs and hand-drawn diagrams are **not yet included** in the three-file public repository root.
 
 Recommended future archive layout (documentation additions only; do not rename or modify the original source files):
 
@@ -533,6 +592,7 @@ RoboticArm-V2/
 ├── README.md                       # This English documentation
 ├── RoboticArm_V2_1.1.scad          # Original 2015 V2 CAD source — unchanged
 ├── roboticarmV2.ino               # Original 2015 V2 firmware — unchanged
+├── RoboticArm_V2_Voltage_Regulator.png # Original recovered drawing — unchanged
 └── archive/                       # Optional additional original files
     ├── V1/                        # Original V1 sources, sketches and photos
     ├── V2-STL/                    # Original V2 STL files, if archived locally
@@ -548,7 +608,7 @@ The directory names above are **suggestions**, not assertions that these folders
 - **Alignment is mandatory:** Incorrectly installed servos can attempt to exceed their mechanical rotation limits. Always initialize before mechanical installation and test unloaded.
 - **Startup values:** The actual PWM commands in `setup()` have precedence over descriptive constants when determining the initial shaft positions.
 - **Pin documentation:** D38 is Programming and D36 is Replay in the executable program, although the old code header and Thingiverse description interchange those labels.
-- **Power regulator:** Its original schematic no longer survives. The listed components alone are not a safe reconstruction guide. Mains-voltage and high-current wiring require appropriate protective measures and qualified work.
+- **Power regulator:** The original LM338 / three-transistor **5 A schematic has been recovered** and is included above. It is historical evidence, not a verified modern build instruction. Use suitable protection, heat sinking and safe high-current wiring; mains-side power-supply construction requires qualified work.
 - **SD files:** The original replay parser expects fixed-width data and original-style line endings, not a general file format.
 - **Dependencies:** Changes to modern Arduino libraries may require compatibility work. Such changes should be maintained separately from the original software.
 - **Servo substitutions:** MG996R and other replacement servos may have different horns, pulse limits, supply requirements, dimensions and travel angles. Check each part before assembly.
@@ -560,7 +620,7 @@ The directory names above are **suggestions**, not assertions that these folders
 
 **Acknowledgements from the original project:**
 
-- **Alfred** — for the voltage-regulator circuit used in the original build.
+- **Alfred** — for the voltage-regulator circuit used in the original build; the original schematic is now included in this archive.
 - **Hans and Franz** — for their continued support during development.
 
 **Original project resources:**
@@ -572,4 +632,4 @@ The directory names above are **suggestions**, not assertions that these folders
 
 ---
 
-*Designed and built in 2015. Historical source files remain unchanged. Documentation updated for clarity and archival preservation.*
+*Designed and built in 2015. Historical CAD, Arduino software and original drawings remain unchanged. Documentation updated for clarity and archival preservation; recovered circuit drawing added.*
