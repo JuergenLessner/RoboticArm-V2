@@ -1,5 +1,15 @@
 $fn=36;
 
+PsTopPlate();
+PsRearPlate();
+PsFrontPlate();
+
+//PRINT EXPORT
+//PsTopPlate();
+//rotate([0,-90,0]) PsRearPlate();   
+//rotate([0,90,0]) PsFrontPlate();
+//END PRINT
+
 module PsTopPlate(){
 // PS TopPlate
     difference(){
@@ -81,12 +91,7 @@ module PsFrontPlate(){
     }    
 }
 
-//PRINT
-//PsTopPlate();
-//rotate([0,-90,0]) PsRearPlate();   
-//rotate([0,90,0]) PsFrontPlate();
 
-//END PRINT
 
 
 /*
