@@ -60,6 +60,12 @@ Cost was another important design constraint. I chose relatively affordable, met
 
 ## RoboticArm V1 — the prototype
 
+The following photographs and drawings are original material from the first prototype, preserved under [`archive/V1/`](archive/V1/).
+
+| Original V1 front photograph | Additional V1 photograph |
+| --- | --- |
+| <img src="archive/V1/Roboterarm_front.jpg" width="340" alt="RoboticArm V1 front view"> | <img src="archive/V1/Foto%202.JPG" width="340" alt="RoboticArm V1 original photograph"> |
+
 V1 established the essential mechanical and electrical architecture:
 
 - A **six-axis articulated arm**, using **seven servos** because the shoulder joint is driven by a pair.
@@ -82,7 +88,23 @@ The original prototype notes list:
 
 The first prototype was an important testbed for the bearing-supported base, load-bearing arm geometry, servo positioning, electronics and manual controls.
 
+### V1 construction sketches and photographs
+
+These photographs and sketches document the original V1 development. The files are retained under their historical names.
+
+| Development sketches | Base construction |
+| --- | --- |
+| <img src="archive/V1/skizzen.jpg" width="340" alt="Original V1 sketches"> | <img src="archive/V1/robotbase_cut_all.jpg" width="340" alt="V1 base sectional drawing"> |
+
+**Other original V1 material:** [additional sketches](archive/V1/skizzen1.jpg), [arm image 1](archive/V1/arm1.jpg), [arm image 9](archive/V1/arm9.jpg), [second arm photograph](archive/V1/roboterarm2.jpg), [bottom view](archive/V1/robotarm_bottom.jpg), and [base cut view](archive/V1/robotbase_cut.jpg).
+
+The V1 hand-drawn electrical diagrams are linked in [Original wiring diagrams](#original-wiring-diagrams) below.
+
 ## RoboticArm V2 — the finished design
+
+<img src="archive/V2/roboticarm_v2_small.jpg" width="540" alt="Original RoboticArm V2 photograph">
+
+*Original V2 photograph, preserved in the project archive.*
 
 V2 was designed to make the arm easier to build, more reliable mechanically, and substantially more capable in operation. The following details come from the original **“Release Infos RA2”** comparison between Versions 1 and 2.
 
@@ -102,6 +124,12 @@ V2 was designed to make the arm easier to build, more reliable mechanically, and
 - Redesigned the **gripper so that it can be printed completely**, unlike the earlier construction with an aluminium gripper.
 - Improved cable routing throughout the entire arm.
 
+**Original V2 gripper photographs:**
+
+| V2 gripper image 1 | V2 gripper image 2 |
+| --- | --- |
+| <img src="archive/V2/RA2Gripper2.jpg" width="340" alt="V2 gripper photograph"> | <img src="archive/V2/RA2Gripper4.jpg" width="340" alt="V2 gripper detail"> |
+
 ### Changes from V1 to V2 — electronics
 
 - Enclosed the complete control electronics in a housing.
@@ -110,6 +138,14 @@ V2 was designed to make the arm easier to build, more reliable mechanically, and
 - Added a **MicroSD card reader** to record and replay arm movements.
 - Replaced soldered interconnection wiring with **crimped plug connectors**.
 - Included the original **5 A adjustable servo-voltage regulator**, allowing a readily available **12 V / 5 A DC power supply** to be used. The historical circuit provides approximately 5.8–6 V or 7.2 V, depending on its resistor configuration; see the [original recovered schematic](#original-2015-voltage-regulator-schematic).
+
+**Original V2 control-panel photographs:**
+
+| Control-panel photograph | Internal keyboard construction |
+| --- | --- |
+| <img src="archive/V2/RA2_Keyboard3.jpg" width="340" alt="V2 original control panel"> | <img src="archive/V2/RA2_Keyboard4.jpg" width="340" alt="V2 keyboard construction"> |
+
+Further photographs: [keyboard image 5](archive/V2/RA2_Keyboard5.jpg) and [additional keyboard photograph](archive/V2/roboticarm_V2_keyboard.jpg).
 
 ### Changes from V1 to V2 — software and operation
 
@@ -202,6 +238,8 @@ These components are listed in the historical 2015 bill of materials and are now
 
 *Original RoboticArm V2 **5 Amp** voltage-regulator circuit drawing, recovered from the project archive. The image is preserved without modification. It was designed with the help of Alfred (see Credits).*
 
+The original archived drawing is also available as [`archive/drawings/roboticarm_V2_voltageregulation.jpg`](archive/drawings/roboticarm_V2_voltageregulation.jpg), alongside a [photograph of the V2 regulator assembly](archive/V2/PA2_voltageregulator.jpg). Both archival images retain their original filenames.
+
 The drawing documents:
 
 | Designator | Original marking | Function / note |
@@ -243,7 +281,10 @@ These are the settings I documented for the original V2 build:
 The original printed design uses **M3 bolts and nuts**. Actual tolerances can differ between printers and materials; check holes, servo pockets, shafts and bearing fits before fastening everything. The original design had to fit a printer with a maximum printable part length of approximately **200 mm**.
 
 **Design source:** [`RoboticArm_V2_1.1.scad`](RoboticArm_V2_1.1.scad)  
-**Original V2 STL collection:** [Thingiverse — Roboticarm V2, thing 969460](https://www.thingiverse.com/thing:969460)
+**Original V2 STL files in this repository:** [`archive/V2-STL/STL_V2.1.1.zip`](archive/V2-STL/STL_V2.1.1.zip)  
+**Original external publication:** [Thingiverse — Roboticarm V2, thing 969460](https://www.thingiverse.com/thing:969460)
+
+The STL archive can be downloaded directly from GitHub. The ZIP file itself is an original historical release; it has not been unpacked or modified for this README update.
 
 The SCAD file is an original source file. Do not overwrite or silently modernize it when documenting the project.
 
@@ -381,9 +422,19 @@ Use an appropriate SD breakout with a regulator and logic-level compatibility fo
 
 ### Original wiring diagrams
 
-The 2015 project included **hand-drawn diagrams of the overall control electronics and keyboard wiring**, together with photographs of the prototype boards and components. These belong to the historical documentation and should remain unaltered when copied into the repository.
+The following historical electrical drawings have been added to the repository **without changing their original image files**.
 
-The original **[5 A voltage-regulator schematic](#original-2015-voltage-regulator-schematic)** has also been recovered and is reproduced above. It remains a historical circuit drawing, not a substitute for appropriate electrical validation when building hardware today.
+**RoboticArm V1 — original wiring and keyboard circuit:**
+
+| V1 wiring diagram | V1 keyboard circuit layout |
+| --- | --- |
+| <img src="archive/V1/robotarmV1_wiring.jpg" width="340" alt="Original RoboticArm V1 wiring drawing"> | <img src="archive/V1/robotarmV1_keyboard_curcuitlayout.jpg" width="340" alt="Original V1 keyboard circuit layout"> |
+
+**RoboticArm V2 — original keyboard wiring drawing:**
+
+<img src="archive/drawings/roboticarm_V2_keyboard.jpg" width="640" alt="Original RoboticArm V2 keyboard wiring drawing">
+
+The original V2 [voltage-regulator drawing](archive/drawings/roboticarm_V2_voltageregulation.jpg) is also archived. A readable version of the [5 A voltage-regulator schematic](#original-2015-voltage-regulator-schematic) is reproduced above. These are historical circuit records, not a substitute for appropriate electrical validation when building hardware today.
 
 ## Arduino software
 
@@ -574,33 +625,46 @@ These six videos were published with RoboticArm V2 in 2015 and show the actual h
 
 ## Original files, drawings and photographs
 
-The repository's `gh-pages` branch contains the following original files:
+This repository preserves the 2015 Arduino and OpenSCAD sources **unchanged**, and now also includes the historical photographs, electrical diagrams and a ZIP archive of the original V2 STL print files.
+
+### Original source files
 
 | File | Description |
 | --- | --- |
-| [`RoboticArm_V2_1.1.scad`](RoboticArm_V2_1.1.scad) | Original OpenSCAD mechanical construction source for V2 |
-| [`roboticarmV2.ino`](roboticarmV2.ino) | Original Arduino Mega software, **RoboarmControlV2 V1.1 (2015-08-30)** |
+| [`RoboticArm_V2_1.1.scad`](RoboticArm_V2_1.1.scad) | Original 2015 OpenSCAD source for V2 |
+| [`roboticarmV2.ino`](roboticarmV2.ino) | Original Arduino Mega firmware, RoboarmControlV2 V1.1 (2015-08-30) |
+| [`archive/V2-STL/STL_V2.1.1.zip`](archive/V2-STL/STL_V2.1.1.zip) | Original V2 STL files as a downloadable ZIP archive |
+| [`RoboticArm_V2_Voltage_Regulator.png`](RoboticArm_V2_Voltage_Regulator.png) | Recovered historical voltage-regulator schematic displayed above |
 
-The original **V2 STL print files** are available on [Thingiverse](https://www.thingiverse.com/thing:969460), and additional historical project construction material is referenced on [Hackster](https://www.hackster.io/JULE/roboticarm-v2-aef36d).
+### Historical photograph and drawing archive
 
-The original photographic documentation includes the assembled arm, control-panel front and internal electronics, keyboard prototyping board, servo/power components, and **two hand-drawn electrical diagrams** (system overview and control keyboard). The newly recovered **voltage-regulator drawing** is reproduced in this README, with the image file supplied alongside it. These materials show the actual 2015 build. All original image files should be stored **unaltered** when added to GitHub; the other photographs and hand-drawn diagrams are **not yet included** in the three-file public repository root.
+The following files are accessible in the repository under their existing names:
 
-Recommended future archive layout (documentation additions only; do not rename or modify the original source files):
+| Directory | Original files |
+| --- | --- |
+| [`archive/V1/`](archive/V1/) | [`Foto 2.JPG`](archive/V1/Foto%202.JPG), [`Roboterarm_front.jpg`](archive/V1/Roboterarm_front.jpg), [`arm1.jpg`](archive/V1/arm1.jpg), [`arm9.jpg`](archive/V1/arm9.jpg), [`robotarm_bottom.jpg`](archive/V1/robotarm_bottom.jpg), [`robotbase_cut.jpg`](archive/V1/robotbase_cut.jpg), [`robotbase_cut_all.jpg`](archive/V1/robotbase_cut_all.jpg), [`roboterarm2.jpg`](archive/V1/roboterarm2.jpg), [`skizzen.jpg`](archive/V1/skizzen.jpg), [`skizzen1.jpg`](archive/V1/skizzen1.jpg) |
+| [`archive/V1/`](archive/V1/) — V1 electrical diagrams | [`robotarmV1_keyboard_curcuitlayout.jpg`](archive/V1/robotarmV1_keyboard_curcuitlayout.jpg), [`robotarmV1_wiring.jpg`](archive/V1/robotarmV1_wiring.jpg) |
+| [`archive/V2/`](archive/V2/) | [`PA2_voltageregulator.jpg`](archive/V2/PA2_voltageregulator.jpg), [`RA2Gripper2.jpg`](archive/V2/RA2Gripper2.jpg), [`RA2Gripper4.jpg`](archive/V2/RA2Gripper4.jpg), [`RA2_Keyboard3.jpg`](archive/V2/RA2_Keyboard3.jpg), [`RA2_Keyboard4.jpg`](archive/V2/RA2_Keyboard4.jpg), [`RA2_Keyboard5.jpg`](archive/V2/RA2_Keyboard5.jpg), [`roboticarm_V2_keyboard.jpg`](archive/V2/roboticarm_V2_keyboard.jpg), [`roboticarm_v2_small.jpg`](archive/V2/roboticarm_v2_small.jpg) |
+| [`archive/drawings/`](archive/drawings/) | [`roboticarm_V2_keyboard.jpg`](archive/drawings/roboticarm_V2_keyboard.jpg), [`roboticarm_V2_voltageregulation.jpg`](archive/drawings/roboticarm_V2_voltageregulation.jpg) |
+
+The two `roboticarm_V2_keyboard.jpg` files appear in separate archive directories and are both retained as uploaded. No attempt has been made to deduplicate, rename or edit them.
+
+### Repository layout
 
 ```text
 RoboticArm-V2/
-├── README.md                       # This English documentation
-├── RoboticArm_V2_1.1.scad          # Original 2015 V2 CAD source — unchanged
-├── roboticarmV2.ino               # Original 2015 V2 firmware — unchanged
-├── RoboticArm_V2_Voltage_Regulator.png # Original recovered drawing — unchanged
-└── archive/                       # Optional additional original files
-    ├── V1/                        # Original V1 sources, sketches and photos
-    ├── V2-STL/                    # Original V2 STL files, if archived locally
-    ├── photos/                    # Unedited historical photographs
-    └── drawings/                  # Unedited historical hand-drawn diagrams
+├── README.md
+├── RoboticArm_V2_1.1.scad
+├── roboticarmV2.ino
+├── RoboticArm_V2_Voltage_Regulator.png
+└── archive/
+    ├── V1/           # V1 photographs, sketches and original electrical diagrams
+    ├── V2/           # V2 photographs, keyboard and regulator documentation
+    ├── V2-STL/       # STL_V2.1.1.zip (original 3D print files)
+    └── drawings/     # V2 keyboard and voltage-regulator drawings
 ```
 
-The directory names above are **suggestions**, not assertions that these folders currently exist. Links to original photographs and drawings can be added here once those files have been committed to the repository. The video previews above already work without a local photo folder.
+For the original external project publications, see [Thingiverse](https://www.thingiverse.com/thing:969460) and [Hackster](https://www.hackster.io/JULE/roboticarm-v2-aef36d).
 
 ## Historical notes and limitations
 
